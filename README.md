@@ -1,2 +1,1 @@
-# svcops
 Services and Operations
