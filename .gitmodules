@@ -1,0 +1,3 @@
+[submodule "satosa_simple_log/tail"]
+	path = satosa_simple_log/tail
+	url = https://github.com/kasun/python-tail.git
