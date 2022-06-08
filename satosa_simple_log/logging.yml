@@ -20,16 +20,20 @@ handlers:
     formatter: simple
   error_file:
     class: logging.handlers.RotatingFileHandler
-    filename: logs/satosa_simple.log
+    filename: logs/satosa_simple_error.log
     level: ERROR
     encoding: utf8
     maxBytes: 10485760 # 10MB
     backupCount: 20
     formatter: error
 loggers:
-  simpleExample:
-    level: DEBUG
-    handlers: [info_file, error_file]
+  simpleLogInfo:
+    level: INFO
+    handlers: [info_file]
+    propagate: yes
+  simpleLogError:
+    level: ERROR
+    handlers: [error_file]
     propagate: yes
 root:
   level: DEBUG

@@ -26,7 +26,8 @@ with open(LOG_CONFIG, 'r') as stream:
     config = yaml.load(stream, Loader=yaml.FullLoader)
 
 logging.config.dictConfig(config)
-logger = logging.getLogger('simpleExample')
+logger = logging.getLogger('simpleLogInfo')
+logger_error = logging.getLogger('simpleLogError')
 
 
 def print_line(txt):
@@ -57,7 +58,7 @@ def print_line(txt):
         else:
             logger.debug("Unmatched regular expressions.")
     except Exception as e:
-        logger.error(e)
+        logger_error.error(e)
 
 
 def parse_xml_to_string(xml):
