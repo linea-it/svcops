@@ -7,13 +7,27 @@ import os
 import xmltodict
 from tail import tail
 
+# when satisfying the regex in the "MATCHED_MSG" list, the entire message is printed in the log.
+MATCHED_MSG = [
+    "^\d+.* ERROR:(.*)",
+    "^\d+.* WARNING:(.*)",
+    "^\d+.* (HTTP .*)",
+    "^\d+.* --- (.*) ---",
+]
+
+# if there is a valid xml in the message, the attribute defined in the 'ATTRS' list is retrieved,
+# as well as its value.
 ATTRS = [
     {'attr': 'AssertionConsumerServiceURL', 'regex': False},
     {'attr': 'Destination'},
     {'attr': 'ID'},
     {'attr': 'InResponseTo'},
+    {'attr': 'NameQualifier'},
+    {'attr': 'SPNameQualifier'},
 ]
 
+# if there is a valid xml in the message, the node defined in the 'NODES' list is retrieved 
+# along with a given attribute and the value of the node.
 NODES = [
     {'node': '(ns\d:Attribute$)', 'attr': '@FriendlyName', 'regex': True},
 ]
@@ -37,7 +51,7 @@ def print_line(txt):
         xml_matched = re.search("<ns\d:.*</ns\d:.*>", txt)
         msg_matched = None
 
-        for matched in ["^\d+.* ERROR:.*", "^\d+.* WARNING:(.*)"]:
+        for matched in MATCHED_MSG:
             if re.search(matched, txt):
                 msg_matched = re.search(matched, txt)
                 break
