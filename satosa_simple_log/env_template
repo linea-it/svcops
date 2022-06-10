@@ -1,0 +1,4 @@
+
+SATOSA_FILE_MONITORED=/app/logs/monitoring.log
+SATOSA_LOG_CONFIG=/app/logging-container.yml
+SATOSA_DELAY=5 
